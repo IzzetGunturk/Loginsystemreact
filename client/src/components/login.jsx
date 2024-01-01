@@ -30,8 +30,6 @@ function Login() {
 
       if (response.ok) {
         setLoggedIn(true);
-        alert('Login succesful!');
-        // Voer hier eventuele navigatie/logica uit na succesvol inloggen
       } else {
         setLoggedIn(false);
         alert('Login error.');
@@ -41,6 +39,10 @@ function Login() {
       alert('An internal error occurred during login.');
     }
   };
+
+  const handleLoggedOut = () => {
+    setLoggedIn(false);
+  }
 
   if (!loggedIn) {
     return (
@@ -56,7 +58,10 @@ function Login() {
     )
   } else {
     return (
-      <h1>ewa</h1>
+      <div className='container'>
+        <h1 className='title'>WELKOM {username}</h1>
+        <button className='buttonSubmit' type='submit' onClick={handleLoggedOut}>Log out</button>
+      </div>
     )
   }
   
