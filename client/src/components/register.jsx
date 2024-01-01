@@ -48,13 +48,13 @@ function Register() {
 
   return (
     <div>
-        <h1>Register</h1>
+      <h1>Register</h1>
         <form onSubmit={handleRegister}>
-            <input className="email" type="text" placeholder='email' name="email" onChange={(e) => setEmail(e.target.value)} />
-            <input className="username" type="text" placeholder='username' name="user_name" onChange={(e) => setUsername(e.target.value)} />
-			      <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
-			      <input className="confirmpassword" type="password" placeholder='confirm password' name="confirmpassword" onChange={(e) => setConfirmPassword(e.target.value)} />
-            <button type='submit'>Register</button>
+          <input className="email" type="text" placeholder='email' name="email" onChange={(e) => setEmail(e.target.value)} />
+          <input className="username" type="text" placeholder='username' name="user_name" onChange={(e) => setUsername(e.target.value)} />
+			    <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
+			    <input className="confirmpassword" type="password" placeholder='confirm password' name="confirmpassword" onChange={(e) => setConfirmPassword(e.target.value)} />
+          <button type='submit'>Register</button>
         </form>
         <p>Already have an account? <a href='/'>Login!</a></p>
     </div>

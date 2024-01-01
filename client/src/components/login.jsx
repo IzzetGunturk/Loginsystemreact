@@ -44,14 +44,14 @@ function Login() {
 
   if (!loggedIn) {
     return (
-      <div>
-          <h1>Login</h1>
-          <form onSubmit={handleLogin}>
-              <input className="username" type="text" placeholder='username' name="user_name" onChange={(e) => setUsername(e.target.value)} />
-              <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
-              <button type='submit'>Login</button>
-          </form>
-          <p>Don't have an account? <a href='/register'>Register!</a></p>
+      <div className='login'>
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+            <input className="username" type="text" placeholder='username' name="user_name" onChange={(e) => setUsername(e.target.value)} />
+            <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
+            <button type='submit'>Login</button>
+        </form>
+        <p>Don't have an account? <a href='/register'>Register!</a></p>
       </div>
     )
   } else {

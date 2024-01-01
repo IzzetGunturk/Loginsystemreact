@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(cors());
-app.use(express.json()); // Body-parser middleware
+app.use(express.json());
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -26,12 +26,18 @@ app.get('/', (req, res) => {
   return res.json("From backend side");
 });
 
+app.listen(8081, () => {
+  console.log("listening");
+});
+
+
+// register account
 app.post('/register', async (req, res) => {
   try {
     const { email, username, password } = req.body;
 
     if (!email || !username || !password) {
-      return res.status(400).json('Vul alle velden in.');
+      return res.status(400).json('Fill in all input fields.');
     }
 
     // the password will be hashed 10 rounds
@@ -39,13 +45,14 @@ app.post('/register', async (req, res) => {
 
     // save the user in the database
     db.query('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', [email, username, hashedPassword]);
-    res.status(200).json('Registratie succesvol');
+    res.status(200).json('Registration succesful');
   } catch (error) {
-    console.error('Fout bij registratie:', error);
-    res.status(500).json('Er is een interne fout opgetreden bij de registratie.');
+    console.error('Registration error:', error);
+    res.status(500).json('An internal error occurred during registration.');
   }
 });
 
+// login
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -70,8 +77,4 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid username or password.' });
     }
   });
-});
-
-app.listen(8081, () => {
-  console.log("listening");
 });
