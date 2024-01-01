@@ -38,7 +38,7 @@ function Login() {
       }
     } catch (error) {
       console.error('An internal error occurred during login:', error);
-      alert('An internal error occurred during login:');
+      alert('An internal error occurred during login.');
     }
   };
 
@@ -47,8 +47,8 @@ function Login() {
       <div className='container'>
         <h1 className='title'>Login</h1>
           <form className='formFields' onSubmit={handleLogin}>
-            <input className="username" type="text" placeholder='username' name="user_name" onChange={(e) => setUsername(e.target.value)} />
-            <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
+            <input className="username" type="text" placeholder='username' name="user_name" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input className="password" type="password" placeholder='password' name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button className='buttonSubmit' type='submit'>Login</button>
           </form>
           <p className='textSwitch'>Don't have an account? <a className='hrefText' href='/register'>Register!</a></p>
