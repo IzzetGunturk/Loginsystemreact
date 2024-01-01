@@ -47,16 +47,16 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-        <form onSubmit={handleRegister}>
+    <div className='container'>
+      <h1 className='title'>Register</h1>
+        <form className='formFields' onSubmit={handleRegister}>
           <input className="email" type="text" placeholder='email' name="email" onChange={(e) => setEmail(e.target.value)} />
           <input className="username" type="text" placeholder='username' name="user_name" onChange={(e) => setUsername(e.target.value)} />
-			    <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
-			    <input className="confirmpassword" type="password" placeholder='confirm password' name="confirmpassword" onChange={(e) => setConfirmPassword(e.target.value)} />
-          <button type='submit'>Register</button>
+          <input className="password" type="password" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} />
+          <input className="confirmpassword" type="password" placeholder='confirm password' name="confirmpassword" onChange={(e) => setConfirmPassword(e.target.value)} />
+          <button className='buttonSubmit' type='submit'>Register</button>
         </form>
-        <p>Already have an account? <a href='/'>Login!</a></p>
+      <p className='textSwitch'>Already have an account? <a className='hrefText' href='/'>Login!</a></p>
     </div>
   )
 }
