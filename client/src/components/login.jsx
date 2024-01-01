@@ -8,10 +8,10 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Voorkom standaard HTML-formuliergedrag
+    e.preventDefault();
    
     if (!username || !password) {
-      alert('Vul alle velden in.');
+      alert('Fill in all input fields.');
       return;
     }
 
@@ -30,15 +30,15 @@ function Login() {
 
       if (response.ok) {
         setLoggedIn(true);
-        alert('Inloggen succesvol!');
+        alert('Login succesful!');
         // Voer hier eventuele navigatie/logica uit na succesvol inloggen
       } else {
         setLoggedIn(false);
-        alert('Inloggen mislukt.');
+        alert('Login error.');
       }
     } catch (error) {
-      console.error('Er is een fout opgetreden bij het inloggen:', error);
-      alert('Er is een fout opgetreden bij het inloggen.');
+      console.error('An internal error occurred during login:', error);
+      alert('An internal error occurred during login:');
     }
   };
 

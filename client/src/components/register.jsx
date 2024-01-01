@@ -9,15 +9,15 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Voorkom standaard HTML-formuliergedrag
+    e.preventDefault();
 
     if (!email || !username || !password || !confirmPassword) {
-      alert('Vul alle velden in.');
+      alert('Fill in all input fields.');
       return;
     }
 
     if (password !== confirmPassword) {
-      alert('Wachtwoorden komen niet overeen.');
+      alert('Passwords do not match.');
       return;
     }
 
@@ -36,13 +36,13 @@ function Register() {
       });
 
       if (response.ok) {
-        alert('Registratie succesvol!');
+        alert('Registration succesful!');
       } else {
-        alert('Registratie mislukt.');
+        alert('Registration error.');
       }
     } catch (error) {
-      console.error('Er is een fout opgetreden bij de registratie:', error);
-      alert('Er is een fout opgetreden bij de registratie.');
+      console.error('An internal error occurred during registration:', error);
+      alert('An internal error occurred during registration.');
     }
   };
 

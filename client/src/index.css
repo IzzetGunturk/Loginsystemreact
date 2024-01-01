@@ -43,17 +43,18 @@ body {
 input {
     border-radius: 10px;
     border: none;
-    padding: 5px;
+    padding: 10px;
     width: 250px;
     height: 30px;
     background: rgba(231, 231, 231, 0.095);
     border-radius: 16px;
     backdrop-filter: blur(5px);
+    color: #fff;
 }
 
 input::placeholder {
-    color: #fff;
-    padding: 10px;
+    color: #ffffffbd;
+    padding: 2px;
 }
 
 .buttonSubmit {
