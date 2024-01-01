@@ -59,7 +59,7 @@ function Login() {
   } else {
     return (
       <div className='container'>
-        <h1 className='title'>WELKOM {username}</h1>
+        <h1 className='title'>WELCOME {username}</h1>
         <button className='buttonSubmit' type='submit' onClick={handleLoggedOut}>Log out</button>
       </div>
     )

@@ -7,6 +7,7 @@ function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [feedback, setFeedback] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ function Register() {
       });
 
       if (response.ok) {
-        alert('Registration succesful!');
+        setFeedback('Registration succesful!')
 
         // fields empty after registration
         setEmail('');
@@ -62,6 +63,7 @@ function Register() {
           <input className="password" type="password" placeholder='password' name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <input className="confirmpassword" type="password" placeholder='confirm password' name="confirmpassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           <button className='buttonSubmit' type='submit'>Register</button>
+          <p className='feedback'>{feedback}</p>
         </form>
       <p className='textSwitch'>Already have an account? <a className='hrefText' href='/'>Login!</a></p>
     </div>

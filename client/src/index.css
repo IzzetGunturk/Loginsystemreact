@@ -24,7 +24,7 @@ body {
     text-align: center;
     justify-items: center;
     align-items: center;
-    padding: 100px;
+    padding: 70px;
 }
 
 .title {
@@ -79,6 +79,11 @@ input::placeholder {
     font-size: 15px;
     font-weight: 400;
     margin-top: 30px;
+}
+
+.feedback {
+    color: #00851d;
+    font-weight: 700;
 }
 
 .hrefText {
