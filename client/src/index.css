@@ -86,6 +86,11 @@ input::placeholder {
     font-weight: 700;
 }
 
+.feedbackError {
+    color: #e20000;
+    font-weight: 700;
+}
+
 .hrefText {
     color: #164faa;
 }

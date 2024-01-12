@@ -7,18 +7,22 @@ function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const [feedback, setFeedback] = useState('');
+  const [feedbackError, setFeedbackError] = useState('');
+  const [feedbackFields, setFeedbackFields] = useState('');
+  const [feedbackPassword, setFeedbackPassword] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
     if (!email || !username || !password || !confirmPassword) {
-      alert('Fill in all input fields.');
+      setFeedbackFields('Fill in all input fields.');
       return;
     }
 
     if (password !== confirmPassword) {
-      alert('Passwords do not match.');
+      setFeedbackPassword('Passwords do not match.');
       return;
     }
 
@@ -44,9 +48,11 @@ function Register() {
         setUsername('');
         setPassword('');
         setConfirmPassword('');
+        setFeedbackError('');
 
       } else {
-        alert('Registration error.');
+        setFeedbackError('Registration failed.');
+        setFeedback('');
       }
     } catch (error) {
       console.error('An internal error occurred during registration:', error);
@@ -63,7 +69,10 @@ function Register() {
           <input className="password" type="password" placeholder='password' name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <input className="confirmpassword" type="password" placeholder='confirm password' name="confirmpassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           <button className='buttonSubmit' type='submit'>Register</button>
-          <p className='feedback'>{feedback}</p>
+          {feedback && <p className='feedback'>{feedback}</p>}
+          {feedbackError && <p className='feedbackError'>{feedbackError}</p>}
+          {feedbackFields && <p className='feedbackError'>{feedbackFields}</p>}
+          {feedbackPassword && <p className='feedbackError'>{feedbackPassword}</p>}
         </form>
       <p className='textSwitch'>Already have an account? <a className='hrefText' href='/'>Login!</a></p>
     </div>
