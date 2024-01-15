@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    background: rgba(231, 231, 231, 0.318);
+    background: rgba(231, 231, 231, 0.192);
     border-radius: 16px;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -53,7 +53,7 @@ input {
 }
 
 input::placeholder {
-    color: #ffffffbd;
+    color: #ffffff;
     padding: 2px;
 }
 
@@ -94,6 +94,23 @@ input::placeholder {
 .hrefText {
     color: #164faa;
 }
+
+.showPassword {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.iconShowPassword {
+    position: absolute;
+    width: 20px;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    color: #fff;
+}
+
+
 
 @media only screen and (max-width: 500px){
     .container {
