@@ -37,8 +37,8 @@ function Login() {
         alert('Login error.');
       }
     } catch (error) {
-      console.error('An internal error occurred during login:', error);
-      alert('An internal error occurred during login.');
+      // console.error('An internal error occurred during login:', error);
+      // alert('An internal error occurred during login.');
     }
   };
 
