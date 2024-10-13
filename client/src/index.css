@@ -89,6 +89,7 @@ input::placeholder {
 .feedbackError {
     color: #e20000;
     font-weight: 700;
+    font-size: 14px;
 }
 
 .hrefText {

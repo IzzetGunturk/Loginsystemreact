@@ -49,13 +49,24 @@ function Register() {
         setEmail('');
         setUsername('');
         setPassword('');
+        setFeedbackPassword('');
         setConfirmPassword('');
         setFeedbackError('');
         setShowPassword(false);
         setShowConfirmPassword(false);
 
       } else {
-        setFeedbackError('Registration failed.');
+
+        const errorText = await response.text();
+        if (errorText === '"Email already exists."') {
+          setFeedbackError('Email already exists')
+        }
+        else if (errorText === '"Username already exists."') {
+          setFeedbackError('Username already exists')
+        }
+        else if (errorText === '"Email and username already exists."') {
+          setFeedbackError('Email and username already exists')
+        }
         setFeedback('');
       }
     } catch (error) {

@@ -34,18 +34,44 @@ app.listen(8081, () => {
 // register account
 app.post('/register', async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const {
+      email,
+      username,
+      password
+    } = req.body;
 
     if (!email || !username || !password) {
       return res.status(400).json('Fill in all input fields.');
     }
 
-    // the password will be hashed 10 rounds
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Check if the email or username already exists in the database
+    const sql = 'SELECT * FROM users WHERE email = ? OR username = ?';
+    db.query(sql, [email, username], async (err, result) => {
+      if (err) {
+        return res.status(500).json('An internal error occurred during registration.');
+      } else if (result.length > 0) {
+        if (result[0].email === email && result[0].username === username) {
+          return res.status(409).json('Email and username already exists.');
+        }
+        if (result[0].email === email) {
+          return res.status(409).json('Email already exists.');
+        }
+        if (result[0].username === username) {
+          return res.status(409).json('Username already exists.');
+        }
+      } else {
+        // If email or username is not found, proceed with registration
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    // save the user in the database
-    db.query('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', [email, username, hashedPassword]);
-    res.status(200).json('Registration succesful');
+        // Save the user in the database
+        db.query('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', [email, username, hashedPassword], (err) => {
+          if (err) {
+            return res.status(500).json('An error occurred while saving the user.');
+          }
+          res.status(201).json('Registration successful');
+        });
+      }
+    });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json('An internal error occurred during registration.');
@@ -54,17 +80,24 @@ app.post('/register', async (req, res) => {
 
 // login
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+  const {
+    username,
+    password
+  } = req.body;
 
   // fetch the user from the database based on the provided username
   const sql = 'SELECT * FROM users WHERE username = ?';
   db.query(sql, [username], async (err, result) => {
     if (err) {
-      return res.status(500).json({ error: 'Error fetching user from database.' });
+      return res.status(500).json({
+        error: 'Error fetching user from database.'
+      });
     }
 
     if (result.length === 0) {
-      return res.status(401).json({ error: 'Invalid username or password.' });
+      return res.status(401).json({
+        error: 'Invalid username or password.'
+      });
     }
 
     // compare the provided password with the password from the database
@@ -72,9 +105,13 @@ app.post('/login', async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (passwordMatch) {
-      return res.json({ message: 'Login successful!'});
+      return res.json({
+        message: 'Login successful!'
+      });
     } else {
-      return res.status(401).json({ error: 'Invalid username or password.' });
+      return res.status(401).json({
+        error: 'Invalid username or password.'
+      });
     }
   });
 });
