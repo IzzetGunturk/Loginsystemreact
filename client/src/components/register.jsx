@@ -16,6 +16,12 @@ function Register() {
   const [feedbackFields, setFeedbackFields] = useState('');
   const [feedbackPassword, setFeedbackPassword] = useState('');
 
+  const length = password.length >= 8;
+  const uppercase = /[A-Z]/.test(password); // const uppercase = /[A-Z]/.test('somepassword'); -> parameter will check the filled password
+  const lowercase = /[a-z]/.test(password);
+  const number = /\d/.test(password);
+  const special = /[@$!%*?&]/.test(password);
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -124,11 +130,11 @@ function Register() {
             </svg>
             {showPopup && 
             <div className='popupPasswordRules'>
-              <li>Minimal 8 characters long</li>
-              <li>Contain at least one uppercase letter</li>
-              <li>One lowercase letter</li>
-              <li>One number</li>
-              <li>One special character</li>
+              <p>{length ? '✔️' : '❌'} Minimal 8 characters long</p>
+              <p>{uppercase ? '✔️' : '❌'} Contain at least one uppercase letter</p>
+              <p>{lowercase ? '✔️' : '❌'} One lowercase letter</p>
+              <p>{number ? '✔️' : '❌'} One number</p>
+              <p>{special ? '✔️' : '❌'} One special character</p>
             </div>
             }
           </div>
